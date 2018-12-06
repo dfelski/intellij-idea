@@ -15,6 +15,6 @@ RUN wget -q https://download.jetbrains.com/idea/ideaIC-2018.3-no-jdk.tar.gz
 RUN tar xf ideaIC-2018.3-no-jdk.tar.gz -C /opt/ && rm ./ideaIC-2018.3-no-jdk.tar.gz
 
 # install git and Maven
-RUN apt install -y git maven
+RUN apt install -y git gradle
 
 CMD ["/opt/idea-IC-183.4284.148/bin/idea.sh"]

@@ -14,7 +14,7 @@ RUN rm ./zulu11.2.3-jdk11.0.1-linux_amd64.deb
 RUN wget -q https://download.jetbrains.com/idea/ideaIC-2018.3-no-jdk.tar.gz
 RUN tar xf ideaIC-2018.3-no-jdk.tar.gz -C /opt/ && rm ./ideaIC-2018.3-no-jdk.tar.gz
 
-# install Maven
-RUN apt install -y maven
+# install git and Maven
+RUN apt install -y git maven
 
 CMD ["/opt/idea-IC-183.4284.148/bin/idea.sh"]

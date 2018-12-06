@@ -20,6 +20,6 @@ RUN mkdir /opt/gradle && unzip -d /opt/gradle gradle-5.0-bin.zip && rm gradle-5.
 ENV PATH="/opt/gradle/gradle-5.0/bin:${PATH}"
 
 # install git
-RUN apt install -y git
+RUN apt install -y git maven
 
 CMD ["/opt/idea-IC-183.4284.148/bin/idea.sh"]

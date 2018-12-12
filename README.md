@@ -5,6 +5,7 @@ Contains [IntelliJ IDEA CE 2018.3.1](https://www.jetbrains.com/idea/) and [Azul 
 
 Additionally installed tools:
 - Git
+- Maven
 - Gradle
 
 Can be easily used with [x11docker](https://github.com/mviereck/x11docker).

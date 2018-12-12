@@ -22,4 +22,4 @@ ENV PATH="/opt/gradle/gradle-5.0/bin:${PATH}"
 # install Git and Maven
 RUN apt install -y git maven
 
-CMD ["/opt/idea-IC-183.4284.148/bin/idea.sh"]
+CMD ["/opt/idea-IC-183.4588.61/bin/idea.sh"]

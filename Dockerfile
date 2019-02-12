@@ -17,9 +17,9 @@ RUN apt update \
     && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea \
     \
     && echo "install gradle" \
-    && wget -q https://services.gradle.org/distributions/gradle-5.0-bin.zip -O /tmp/gradle-5.0-bin.zip \
+    && wget -q https://services.gradle.org/distributions/gradle-5.2.1-bin.zip -O /tmp/gradle.zip \
     && mkdir /opt/gradle \
-    && unzip -d /opt/gradle /tmp/gradle-5.0-bin.zip \
+    && unzip -d /opt/gradle /tmp/gradle.zip \
     \
     && echo "install git, maven and groovy" \
     && apt install -y git maven groovy \

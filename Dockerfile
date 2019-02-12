@@ -1,25 +1,34 @@
 FROM ubuntu:18.04
 MAINTAINER Darius Felski
-LABEL Description="Docker image for IntelliJ IDEA with preinstalled OpenJDK 11" Version="0.2.0"
+LABEL Description="Docker image for IntelliJ IDEA with preinstalled OpenJDK 11" Version="0.3.0"
 
-# upgrade and install some basics first
-RUN apt update && apt upgrade -y && apt install -y software-properties-common apt-transport-https wget unzip
+RUN apt update \
+    && echo "install some basics first" \
+    && apt install -y software-properties-common apt-transport-https wget unzip \
+    \
+    && echo "install Zulu OpenJDK 11" \
+    && wget -q https://cdn.azul.com/zulu/bin/zulu11.29.3-ca-jdk11.0.2-linux_amd64.deb \
+    && apt install -y ./zulu11.29.3-ca-jdk11.0.2-linux_amd64.deb \
+    && rm ./zulu11.29.3-ca-jdk11.0.2-linux_amd64.deb \
+    \
+    && echo "install IntelliJ IDEA" \
+    && wget -q https://download.jetbrains.com/idea/ideaIC-2018.3.4-no-jdk.tar.gz -O /tmp/idea.tar.gz \
+    && mkdir -p /opt/idea \
+    && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea \
+    \
+    && echo "install gradle" \
+    && wget -q https://services.gradle.org/distributions/gradle-5.0-bin.zip -O /tmp/gradle-5.0-bin.zip \
+    && mkdir /opt/gradle \
+    && unzip -d /opt/gradle /tmp/gradle-5.0-bin.zip \
+    \
+    && echo "install git, maven and groovy" \
+    && apt install -y git maven groovy \
+    \
+    && apt clean \
+    && apt autoremove --purge -y \
+    && rm -rf /tmp \
+    && rm -rf /var/lib/apt/lists*
 
-# install Zulu OpenJDK 11 package
-RUN wget -q https://cdn.azul.com/zulu/bin/zulu11.2.3-jdk11.0.1-linux_amd64.deb
-RUN apt install -y ./zulu11.2.3-jdk11.0.1-linux_amd64.deb
-RUN rm ./zulu11.2.3-jdk11.0.1-linux_amd64.deb
-
-# install IntelliJ IDEA
-RUN wget -q https://download.jetbrains.com/idea/ideaIC-2018.3.1-no-jdk.tar.gz
-RUN tar xf ideaIC-2018.3.1-no-jdk.tar.gz -C /opt/ && rm ./ideaIC-2018.3.1-no-jdk.tar.gz
-
-# install Gradle
-RUN wget -q https://services.gradle.org/distributions/gradle-5.0-bin.zip
-RUN mkdir /opt/gradle && unzip -d /opt/gradle gradle-5.0-bin.zip && rm gradle-5.0-bin.zip
 ENV PATH="/opt/gradle/gradle-5.0/bin:${PATH}"
 
-# install Git and Maven
-RUN apt install -y git maven
-
-CMD ["/opt/idea-IC-183.4588.61/bin/idea.sh"]
+CMD ["/opt/idea/bin/idea.sh"]

@@ -26,9 +26,9 @@ RUN apt update \
     \
     && apt clean \
     && apt autoremove --purge -y \
-    && rm -rf /tmp \
+    && rm -rf /tmp/* \
     && rm -rf /var/lib/apt/lists*
 
-ENV PATH="/opt/gradle/gradle-5.0/bin:${PATH}"
+ENV PATH="/opt/gradle/gradle-5.2.1/bin:${PATH}"
 
 CMD ["/opt/idea/bin/idea.sh"]

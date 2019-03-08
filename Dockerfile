@@ -12,7 +12,7 @@ RUN echo "install Zulu OpenJDK 11" \
     && rm ./zulu11.29.3-ca-jdk11.0.2-linux_amd64.deb
 
 RUN echo "install IntelliJ IDEA" \
-    && wget -q https://download.jetbrains.com/idea/ideaIC-2018.3.4-no-jdk.tar.gz -O /tmp/idea.tar.gz \
+    && wget -q https://download.jetbrains.com/idea/ideaIC-2018.3.5-no-jdk.tar.gz -O /tmp/idea.tar.gz \
     && mkdir -p /opt/idea \
     && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea \
     \

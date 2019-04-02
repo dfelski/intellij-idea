@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 MAINTAINER Darius Felski
-LABEL Description="Docker image for IntelliJ IDEA with preinstalled OpenJDK 11" Version="0.3.1"
+LABEL Description="Docker image for IntelliJ IDEA with preinstalled OpenJDK 11" Version="0.4.0"
 
 RUN apt update \
     && echo "install some basics first" \
@@ -12,12 +12,12 @@ RUN echo "install Zulu OpenJDK 11" \
     && rm ./zulu11.29.3-ca-jdk11.0.2-linux_amd64.deb
 
 RUN echo "install IntelliJ IDEA" \
-    && wget -q https://download.jetbrains.com/idea/ideaIC-2018.3.5-no-jdk.tar.gz -O /tmp/idea.tar.gz \
+    && wget -q https://download.jetbrains.com/idea/ideaIC-2018.3.6-no-jdk.tar.gz -O /tmp/idea.tar.gz \
     && mkdir -p /opt/idea \
     && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea \
     \
     && echo "install gradle" \
-    && wget -q https://services.gradle.org/distributions/gradle-5.2.1-bin.zip -O /tmp/gradle.zip \
+    && wget -q https://services.gradle.org/distributions/gradle-5.3.1-bin.zip -O /tmp/gradle.zip \
     && mkdir /opt/gradle \
     && unzip -d /opt/gradle /tmp/gradle.zip \
     \
@@ -26,6 +26,6 @@ RUN echo "install IntelliJ IDEA" \
     && echo "install git, maven and groovy" \
     && apt install -y git maven groovy
 
-ENV PATH="/opt/gradle/gradle-5.2.1/bin:${PATH}"
+ENV PATH="/opt/gradle/gradle-5.3.1/bin:${PATH}"
 
 CMD ["/opt/idea/bin/idea.sh"]

@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 MAINTAINER Darius Felski
-LABEL Description="Docker image for IntelliJ IDEA with preinstalled OpenJDK 11" Version="0.4.0"
+LABEL Description="Docker image for IntelliJ IDEA with preinstalled OpenJDK 11" Version="0.5.0"
 
 RUN apt update \
     && echo "install some basics first" \
@@ -12,7 +12,7 @@ RUN echo "install Zulu OpenJDK 11" \
     && rm ./zulu11.29.3-ca-jdk11.0.2-linux_amd64.deb
 
 RUN echo "install IntelliJ IDEA" \
-    && wget -q https://download.jetbrains.com/idea/ideaIC-2018.3.6-no-jdk.tar.gz -O /tmp/idea.tar.gz \
+    && wget -q https://download.jetbrains.com/idea/ideaIC-2019.1-no-jbr.tar.gz -O /tmp/idea.tar.gz \
     && mkdir -p /opt/idea \
     && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea \
     \

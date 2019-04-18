@@ -11,12 +11,7 @@ RUN echo "install Zulu OpenJDK 11" \
     && apt install -y ./zulu11.29.3-ca-jdk11.0.2-linux_amd64.deb \
     && rm ./zulu11.29.3-ca-jdk11.0.2-linux_amd64.deb
 
-RUN echo "install IntelliJ IDEA" \
-    && wget -q https://download.jetbrains.com/idea/ideaIC-2019.1-no-jbr.tar.gz -O /tmp/idea.tar.gz \
-    && mkdir -p /opt/idea \
-    && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea \
-    \
-    && echo "install gradle" \
+RUN echo "install maven and gradle" \
     && wget -q https://services.gradle.org/distributions/gradle-5.3.1-bin.zip -O /tmp/gradle.zip \
     && mkdir /opt/gradle \
     && unzip -d /opt/gradle /tmp/gradle.zip \
@@ -25,6 +20,11 @@ RUN echo "install IntelliJ IDEA" \
     \
     && echo "install git, maven and groovy" \
     && apt install -y git maven groovy
+
+RUN echo "install IntelliJ IDEA" \
+    && wget -q https://download.jetbrains.com/idea/ideaIC-2019.1.1-no-jbr.tar.gz -O /tmp/idea.tar.gz \
+    && mkdir -p /opt/idea \
+    && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea
 
 ENV PATH="/opt/gradle/gradle-5.3.1/bin:${PATH}"
 

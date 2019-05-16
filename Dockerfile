@@ -7,12 +7,12 @@ RUN apt update \
     && apt install -y software-properties-common apt-transport-https wget unzip
 
 RUN echo "install Zulu OpenJDK 11" \
-    && wget -q https://cdn.azul.com/zulu/bin/zulu11.29.3-ca-jdk11.0.2-linux_amd64.deb \
-    && apt install -y ./zulu11.29.3-ca-jdk11.0.2-linux_amd64.deb \
-    && rm ./zulu11.29.3-ca-jdk11.0.2-linux_amd64.deb
+    && wget -q https://cdn.azul.com/zulu/bin/zulu11.31.11-ca-jdk11.0.3-linux_amd64.deb \
+    && apt install -y ./zulu11.31.11-ca-jdk11.0.3-linux_amd64.deb \
+    && rm ./zulu11.31.11-ca-jdk11.0.3-linux_amd64.deb
 
 RUN echo "install maven and gradle" \
-    && wget -q https://services.gradle.org/distributions/gradle-5.3.1-bin.zip -O /tmp/gradle.zip \
+    && wget -q https://services.gradle.org/distributions/gradle-5.4.1-bin.zip -O /tmp/gradle.zip \
     && mkdir /opt/gradle \
     && unzip -d /opt/gradle /tmp/gradle.zip \
     \
@@ -22,7 +22,7 @@ RUN echo "install maven and gradle" \
     && apt install -y git maven groovy
 
 RUN echo "install IntelliJ IDEA" \
-    && wget -q https://download.jetbrains.com/idea/ideaIC-2019.1.1-no-jbr.tar.gz -O /tmp/idea.tar.gz \
+    && wget -q https://download.jetbrains.com/idea/ideaIC-2019.1.2-no-jbr.tar.gz -O /tmp/idea.tar.gz \
     && mkdir -p /opt/idea \
     && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea
 

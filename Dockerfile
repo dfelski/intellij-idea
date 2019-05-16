@@ -26,6 +26,6 @@ RUN echo "install IntelliJ IDEA" \
     && mkdir -p /opt/idea \
     && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea
 
-ENV PATH="/opt/gradle/gradle-5.3.1/bin:${PATH}"
+ENV PATH="/opt/gradle/gradle-5.4.1/bin:${PATH}"
 
 CMD ["/opt/idea/bin/idea.sh"]

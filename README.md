@@ -1,7 +1,7 @@
 # IntelliJ IDEA - OpenJDK 11
 Docker image for IntelliJ IDEA with preinstalled OpenJDK 11
 
-Contains [IntelliJ IDEA CE 2019.1](https://www.jetbrains.com/idea/) and [Azul Zulu OpenJDK 11.0.3](https://www.azul.com/downloads/zulu/).
+Contains [IntelliJ IDEA CE 2019.1](https://www.jetbrains.com/idea/) and [AdoptOpenJDK 11.0.3](https://adoptopenjdk.net).
 
 Additionally installed tools:
 - Git

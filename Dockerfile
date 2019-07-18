@@ -4,7 +4,7 @@ LABEL Description="Docker image for IntelliJ IDEA with preinstalled OpenJDK 11"
 
 RUN apt update \
     && echo "install some basics first" \
-    && apt install -y software-properties-common apt-transport-https wget unzip
+    && apt install -y software-properties-common apt-transport-https wget unzip libfontconfig1
 
 RUN echo "install AdoptOpenJDK 11" \
     && wget -q https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/pool/main/a/adoptopenjdk-11-hotspot/adoptopenjdk-11-hotspot_11.0.3+7-1_amd64.deb \
@@ -27,5 +27,6 @@ RUN echo "install IntelliJ IDEA" \
     && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea
 
 ENV PATH="/opt/gradle/gradle-5.5.1/bin:${PATH}"
+ENV LC_CTYPE en_US.UTF-8
 
 CMD ["/opt/idea/bin/idea.sh"]

@@ -22,7 +22,7 @@ RUN echo "install maven and gradle" \
     && apt install -y git maven groovy
 
 RUN echo "install IntelliJ IDEA" \
-    && wget -q https://download.jetbrains.com/idea/ideaIC-2019.2-no-jbr.tar.gz -O /tmp/idea.tar.gz \
+    && wget -q https://download.jetbrains.com/idea/ideaIC-2019.2.1-no-jbr.tar.gz -O /tmp/idea.tar.gz \
     && mkdir -p /opt/idea \
     && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea
 

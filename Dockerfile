@@ -12,7 +12,7 @@ RUN echo "install AdoptOpenJDK 11" \
     && rm ./adoptopenjdk-11-hotspot_11.0.4+11-2_amd64.deb
 
 RUN echo "install maven and gradle" \
-    && wget -q https://services.gradle.org/distributions/gradle-5.6-bin.zip -O /tmp/gradle.zip \
+    && wget -q https://services.gradle.org/distributions/gradle-5.6.2-bin.zip -O /tmp/gradle.zip \
     && mkdir /opt/gradle \
     && unzip -d /opt/gradle /tmp/gradle.zip \
     \
@@ -22,7 +22,7 @@ RUN echo "install maven and gradle" \
     && apt install -y git maven groovy
 
 RUN echo "install IntelliJ IDEA" \
-    && wget -q https://download.jetbrains.com/idea/ideaIC-2019.2.1-no-jbr.tar.gz -O /tmp/idea.tar.gz \
+    && wget -q https://download.jetbrains.com/idea/ideaIC-2019.2.2-no-jbr.tar.gz -O /tmp/idea.tar.gz \
     && mkdir -p /opt/idea \
     && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea
 

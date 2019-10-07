@@ -26,7 +26,7 @@ RUN echo "install IntelliJ IDEA" \
     && mkdir -p /opt/idea \
     && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea
 
-ENV PATH="/opt/gradle/gradle-5.6/bin:${PATH}"
+ENV PATH="/opt/gradle/gradle-5.6.2/bin:${PATH}"
 ENV LC_CTYPE en_US.UTF-8
 
 CMD ["/opt/idea/bin/idea.sh"]

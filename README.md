@@ -1,7 +1,7 @@
 # IntelliJ IDEA - OpenJDK 11
 Docker image for IntelliJ IDEA with preinstalled OpenJDK 11
 
-Contains [IntelliJ IDEA CE 2019.1](https://www.jetbrains.com/idea/) and [AdoptOpenJDK 11.0.3](https://adoptopenjdk.net).
+Contains [IntelliJ IDEA CE 2019.2.3](https://www.jetbrains.com/idea/) and [AdoptOpenJDK 11.0.4](https://adoptopenjdk.net).
 
 Additionally installed tools:
 - Git

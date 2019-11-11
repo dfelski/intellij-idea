@@ -1,32 +1,39 @@
-FROM ubuntu:18.04
+FROM debian:buster
+
 MAINTAINER Darius Felski
 LABEL Description="Docker image for IntelliJ IDEA with preinstalled OpenJDK 11"
 
+ARG JDK_VERSION=11.0.5+10-2
+ARG INTELLIJ_VERSION=2019.2.4
+ARG MAVEN_VERSION=3.6.2
+ARG GRADLE_VERSION=6.0
+
 RUN apt update \
     && echo "install some basics first" \
-    && apt install -y software-properties-common apt-transport-https wget unzip libfontconfig1
+    && apt install -y software-properties-common apt-transport-https wget unzip libfontconfig1 git
 
 RUN echo "install AdoptOpenJDK 11" \
-    && wget -q https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/pool/main/a/adoptopenjdk-11-hotspot/adoptopenjdk-11-hotspot_11.0.5+10-2_amd64.deb \
-    && apt install -y ./adoptopenjdk-11-hotspot_11.0.5+10-2_amd64.deb \
-    && rm ./adoptopenjdk-11-hotspot_11.0.5+10-2_amd64.deb
+    && wget -q https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/pool/main/a/adoptopenjdk-11-hotspot/adoptopenjdk-11-hotspot_${JDK_VERSION}_amd64.deb -O /tmp/adoptopenjdk.deb \
+    && apt install -y /tmp/adoptopenjdk.deb \
+    && rm -rf /tmp/*
 
-RUN echo "install maven and gradle" \
-    && wget -q https://services.gradle.org/distributions/gradle-5.6.4-bin.zip -O /tmp/gradle.zip \
-    && mkdir /opt/gradle \
-    && unzip -d /opt/gradle /tmp/gradle.zip \
+RUN echo "install maven & gradle" \
+    && wget -q https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -O /tmp/gradle.zip \
+    && unzip -d /opt/ /tmp/gradle.zip \
     \
-    && rm -rf /tmp/* \
-    \
-    && echo "install git, maven and groovy" \
-    && apt install -y git maven groovy
+    && echo "install maven" \
+    && wget -q ftp://ftp.fu-berlin.de/unix/www/apache/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.zip -O /tmp/maven.zip \
+    && unzip -d /opt/ /tmp/maven.zip \
+    && rm -rf /tmp/*
 
 RUN echo "install IntelliJ IDEA" \
-    && wget -q https://download.jetbrains.com/idea/ideaIC-2019.2.4-no-jbr.tar.gz -O /tmp/idea.tar.gz \
+    && wget -q https://download.jetbrains.com/idea/ideaIC-${INTELLIJ_VERSION}-no-jbr.tar.gz -O /tmp/idea.tar.gz \
     && mkdir -p /opt/idea \
-    && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea
+    && tar zxvf /tmp/idea.tar.gz --strip-components=1 -C /opt/idea \
+    && rm -rf /tmp/*
 
-ENV PATH="/opt/gradle/gradle-5.6.4/bin:${PATH}"
+ENV PATH="/opt/gradle-${GRADLE_VERSION}/bin:${PATH}"
+ENV PATH="/opt/apache-maven-${MAVEN_VERSION}/bin:${PATH}"
 ENV LC_CTYPE en_US.UTF-8
 
 CMD ["/opt/idea/bin/idea.sh"]

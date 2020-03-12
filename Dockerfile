@@ -3,10 +3,10 @@ FROM debian:buster
 MAINTAINER Darius Felski
 LABEL Description="Docker image for IntelliJ IDEA with preinstalled OpenJDK 11"
 
-ARG JDK_VERSION=11.0.5+10-2
-ARG INTELLIJ_VERSION=2019.3.1
+ARG JDK_VERSION=11.0.6+10-2
+ARG INTELLIJ_VERSION=2019.3.3
 ARG MAVEN_VERSION=3.6.3
-ARG GRADLE_VERSION=6.0.1
+ARG GRADLE_VERSION=6.2.2
 
 RUN apt update \
     && echo "install some basics first" \
